@@ -1,29 +1,15 @@
-<!DOC TYPE html>
-<html>
-	<head>
-		<title>Down By The River</title>
-	</head>
-	<body>
-		<header>
-			<h1><a href="/">Down By The River</a></h1>
-		</header>
-		
-		<br>
-		<h2>My tale of ....something</h2>
-		<br>
-		<p>So the relearning begins. Pull up a chair, grab a beer and join me down by the river as I teach myself things <em>long</em> forgotten.</p>
-		<p>It works!</p>
-		<br>
-		<br>
-		
-		{% for post in posts %}
-			<article>
-				<time>published: {{ post.published_date }}</time>
-				<h2><a href="">{{ post.title }}</a></h2>
-				<p>{{ post.text|linebreaksbr }}</p>
-			</article>
-		{% endfor %}
-					
-	</body>
-</html>	
+{% extends 'blog/base.html' %}
+	
+{% block content %} 
+	{% for post in posts %}
+		<article class="post">
+			<time class="date">
+				{{ post.published_date }}
+			</time>
+			<h2><a href="{% url 'post_detail' pk=post.pk%}">{{ post.title }}</a></h2>
+			<p>{{ post.text|linebreaksbr }}</p>
+		</article>
+	{% endfor %}
+{% endblock %}
 
+	
